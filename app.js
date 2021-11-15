@@ -80,7 +80,7 @@ const HttpsProxyAgent = require('https-proxy-agent')
 const PrettyError = require('pretty-error')
 const pe = new PrettyError()
 require('express-async-errors')
-//const _tokenizer = tokenizer()
+const _tokenizer = tokenizer()
 
 if (!fs.existsSync('logs')) {
   fs.mkdirSync('logs')
@@ -456,8 +456,8 @@ app.post('/analyze_string', async function (req, res, next) {
         await externalApis.get_words_info(all_words, words_info)
       }
     } else if (req.body.option.includes('NormalAnalysis@@')) {
-      /*
-      // var maybe_words = WordsNinja.splitSentence(req.body.string);
+      
+       var maybe_words = WordsNinja.splitSentence(req.body.string);
       all_words.maybe = maybe_words.filter(function (elem, index, self) {
         return index === self.indexOf(elem)
       })
@@ -472,7 +472,7 @@ app.post('/analyze_string', async function (req, res, next) {
       })
 
       Object.keys(all_words).forEach((key) => (all_words[key].length === 0) && delete all_words[key])
-      */
+      
     }
 
     if (req.body.option.includes('NetworkGraph')) {
@@ -497,7 +497,7 @@ app.post('/analyze_string', async function (req, res, next) {
 
     helper.log_to_file_queue(req.body.uuid, '[Finished] Analyzing: ' + req.body.string + ' Task: ' + req.body.uuid)
 
-     /*fs.writeFileSync('./test.json', JSON.stringify({
+     fs.writeFileSync('./test.json', JSON.stringify({
      username: username,
      uuid: temp_uuid,
      info,
@@ -513,7 +513,7 @@ app.post('/analyze_string', async function (req, res, next) {
      graph: graph,
      stats: stats_default,
      logs: logs
-    }, null, 2) , 'utf-8');*/
+    }, null, 2) , 'utf-8');
 
     res.json({
       username: username,
@@ -613,7 +613,7 @@ async function check_user_cli (argv) {
     }
   }
 
-  //var websites = Boolean(process.argv.indexOf('--websites') > -1)
+  var websites = Boolean(process.argv.indexOf('--websites') > -1)
   const top = Boolean(process.argv.indexOf('--top') > -1)
   const countries = Boolean(process.argv.indexOf('--countries') > -1)
 
