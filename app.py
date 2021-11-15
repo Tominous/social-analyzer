@@ -130,7 +130,7 @@ class SocialAnalyzer():
                         return func(*args, **kwargs)
                     except Exception as err:
                         pass
-                        # self.print_wrapper(e)
+                         self.print_wrapper(e)
                 else:
                     return func(*args, **kwargs)
             return wrapper
